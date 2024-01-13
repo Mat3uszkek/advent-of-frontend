@@ -7,6 +7,8 @@ export interface Lokalizacja {
 
 export type MapaCzasoprzestrzenna = (x: number, y: number, z: number, czas: number) => number
 
+const getMapValue = ({ x, y, z ,czas }: Lokalizacja, cb: MapaCzasoprzestrzenna) => cb(x, y, z, czas)
+
 export function znajdzWorek(lokalizacje: Lokalizacja[], mapa: MapaCzasoprzestrzenna): Lokalizacja | null {
   if (lokalizacje.length === 0) {
     return null
@@ -27,10 +29,4 @@ export function znajdzWorek(lokalizacje: Lokalizacja[], mapa: MapaCzasoprzestrze
   }
 
   return biggestMap
-}
-
-function getMapValue  (mapa: Lokalizacja, cb: MapaCzasoprzestrzenna) {
-  const { x, y, z, czas} = mapa
-
-  return cb(x, y, z, czas)
 }
